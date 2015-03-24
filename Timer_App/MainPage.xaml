@@ -12,9 +12,12 @@
         <FlyoutBase.AttachedFlyout>
             <MenuFlyout/>
         </FlyoutBase.AttachedFlyout>
-        <Button Content="开始" HorizontalAlignment="Left" Margin="71,423,0,0" VerticalAlignment="Top" Height="28" Width="85" Name="bks"/>
-        <Button Content="复位" HorizontalAlignment="Stretch" Margin="232,423,59,0" VerticalAlignment="Top" Height="28" Width="85" Name="bfw"/>
-        <Button Content="停止" HorizontalAlignment="Left" Margin="71,483,0,0" VerticalAlignment="Top" Height="28" Width="85" Name="btz"/>
-        <Button Content="定时" HorizontalAlignment="Left" Margin="232,483,0,0" VerticalAlignment="Top" Height="28" Width="85" Name="bds"/>
+        <Button Content="开始" HorizontalAlignment="Left" Margin="65,379,0,0" VerticalAlignment="Top" Height="28" Width="85" Name="bks" Click="bksclick"/>
+        <Button Content="清零" HorizontalAlignment="Stretch" Margin="226,379,65,0" VerticalAlignment="Top" Height="28" Width="85" Name="bql" Click="bqlclick"/>
+        <Button Content="停止" HorizontalAlignment="Left" Margin="65,439,0,0" VerticalAlignment="Top" Height="28" Width="85" Name="btz" Click="btzclick"/>
+        <Button Content="定时" HorizontalAlignment="Left" Margin="226,439,0,0" VerticalAlignment="Top" Height="28" Width="85" Name="bds" Click="bdsclick" />
+        <TextBlock HorizontalAlignment="Left" Margin="65,74,0,0" TextWrapping="Wrap" Text="00:00" VerticalAlignment="Top" Height="125" Width="270" Name="textblock1" FontSize="110"/>
+        <TextBlock HorizontalAlignment="Left" Margin="242,199,0,0" TextWrapping="Wrap" Text=".000" VerticalAlignment="Top" Height="40" Width="93" Name="textblock2" FontSize="40"/>
+
     </Grid>
 </Page>

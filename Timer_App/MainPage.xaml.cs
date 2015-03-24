@@ -20,6 +20,7 @@ namespace Timer_App
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
+
     public sealed partial class MainPage : Page
     {
         public MainPage()
@@ -43,6 +44,30 @@ namespace Timer_App
             // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
             // If you are using the NavigationHelper provided by some templates,
             // this event is handled for you.
+        }
+
+        //start
+        private void bksclick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //stop
+        private void btzclick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //clear to zero
+        private void bqlclick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //Set time
+        private void bdsclick(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
