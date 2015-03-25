@@ -27,6 +27,7 @@ namespace Timer_App
         int second=0;
         int rest=0;
         int minute1, minute2, second1, second2;
+        int rest1, rest2, rest3;
         bool flag = false; //default: not running 
         
 
@@ -76,7 +77,7 @@ namespace Timer_App
             second = 0;
             rest = 0;
             textblock1.Text = "00:00";
-            textblock2.Text = "000";
+            textblock2.Text = ".000";
         }
 
         //Set time
@@ -97,6 +98,9 @@ namespace Timer_App
                 minute2 = minute % 10;
                 second1 = second / 10;
                 second2 = second % 10;
+                rest1 = rest / 100;
+                rest2 = (rest - rest1 * 100) / 10;
+                rest3 = (rest - rest1 * 100 - rest2 * 10);
                 ShowTime();
             }
 
@@ -104,9 +108,9 @@ namespace Timer_App
 
         private void ShowTime()
         {         
-                textblock1.Text = minute1 + minute2 + ":" + second1 + second2;                
-                textblock2.Text = "." + rest;
-                        
+                textblock1.Text = minute1 + minute2 + ":" + second1 + second2;    
+                textblock2.Text = "." + rest1 + rest2 + rest3;
+                                   
         }
     }
 }
