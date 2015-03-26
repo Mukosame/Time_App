@@ -20,8 +20,10 @@
         -->
         <TextBlock HorizontalAlignment="Left" Margin="65,74,0,0" TextWrapping="Wrap" Text="00:00" VerticalAlignment="Top" Height="125" Width="270" Name="textblock1" FontSize="110"/>
         <TextBlock HorizontalAlignment="Left" Margin="242,199,0,0" TextWrapping="Wrap" Text=".000" VerticalAlignment="Top" Height="40" Width="93" Name="textblock2" FontSize="40"/>
-        <TimePicker HorizontalAlignment="Left" Margin="20,420,0,0" VerticalAlignment="Top" Width="360" Header="定时" Name="TimePicker" />
-<!--TimePicker的行为还没写！！！-->
+        <TimePicker HorizontalAlignment="Left" Margin="20,420,0,0" VerticalAlignment="Top" Width="360" Header="定时" Name="TimePicker" TimeChanged="time_changed" 
+                      MinuteIncrement="15" />
+        
+
 
     </Grid>
 </Page>

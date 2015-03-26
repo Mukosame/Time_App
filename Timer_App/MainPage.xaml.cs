@@ -81,6 +81,16 @@ namespace Timer_App
         }
 
         //Set time
+        private void time_changed(object sender, TimePickerValueChangedEventArgs e)
+        {
+            // e.OldTime - 原时间
+            // e.NewTime - 新时间
+            textblock1.Text = TimePicker.Time.ToString();
+            textblock2.Text = ".000";
+            //TimePicker.Time.ToString
+            countdown();
+        }
+
         private void bdsclick(object sender, RoutedEventArgs e)
         {
             //this.NavigationService.Navigate(new Uri("/Time_Page.xaml", UriKind.Relative));
@@ -103,6 +113,12 @@ namespace Timer_App
                 rest3 = (rest - rest1 * 100 - rest2 * 10);
                 ShowTime();
             }
+
+        }
+        private void countdown()
+        {
+            //count down to 00:00
+            //and DING!
 
         }
 
