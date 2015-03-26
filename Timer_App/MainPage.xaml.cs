@@ -30,12 +30,21 @@ namespace Timer_App
         //int rest=0;
         int minute1=0, minute2=0, second1=0, second2=0;
         int rest1=0, rest2=0, rest3=0;
-        bool flag = false; //default: not running 
+        int alltime = 0;
+        bool flag = true; //default: add time running 
         
 
         public MainPage()
         {
             this.InitializeComponent();
+            List<TimeDuration> datas = new List<TimeDuration>
+            {
+                new TimeDuration {Num=30, Unit="秒"},// min=0, second=30},
+                new TimeDuration {Num=1, Unit="分钟"},// , min=1, second=0},
+                new TimeDuration {Num=2, Unit="分钟"},// , min=2, second=0},
+                new TimeDuration {Num=5, Unit="分钟"},// , min=5, second=0},
+                new TimeDuration {Num=10, Unit="分钟"},// , min=10, second=0},
+            };
 
             dispatcherTimer.Tick += new EventHandler<object>(dispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 1);
@@ -63,6 +72,7 @@ namespace Timer_App
         //start
         private void bksclick(object sender, RoutedEventArgs e)
         {
+            flag = true;
             dispatcherTimer.Start();
         }
 
@@ -75,9 +85,13 @@ namespace Timer_App
         }
 
         //reset to zero
-        private void bqlclick(object sender, RoutedEventArgs e)
+        private void bqlclick(object sender, RoutedEventArgs e){
+            reset();
+        }
+
+        private void reset()
         {
-            //flag = false;
+            flag = true;
             dispatcherTimer.Stop();
             minute1 = 0; minute2 = 0;
             second1 = 0; second2 = 0;
@@ -88,34 +102,53 @@ namespace Timer_App
         }
 
         //Set time
-        private void time_changed(object sender, TimePickerValueChangedEventArgs e)
+        private void ds (object sender, object e)
         {
-            // e.OldTime - 原时间
-            // e.NewTime - 新时间
-           // textblock1.Text = TimePicker.Time.ToString();
-            textblock2.Text = ".000";
-            //TimePicker.Time.ToString
-            countdown();
-        }
+            //select certain time duration
+            if (combobox.SelectedItem != null)
+            {
+                int s = 0; int m = 0;
+                TimeDuration duration = combobox.SelectedItem as TimeDuration;
+                if (duration.Unit=="秒")
+                {
+                    s = duration.Num;
+                }
 
-        private void bdsclick(object sender, RoutedEventArgs e)
-        {
-            //this.NavigationService.Navigate(new Uri("/Time_Page.xaml", UriKind.Relative));
-
+                if (duration.Unit=="分钟")
+                {
+                    m = duration.Num;
+                }
+               
+                countdown(s,m);
+            }
+            textblock2.Text = ".000";            
         }
 
         //change time
         private void dispatcherTimer_Tick(object sender, object e)
         {
+            if (flag == true)
+            {
+                AddTime();
+            }
+            else
+            {
+                MinusTime();
+            }            
+            ShowTime();
+        }
+
+        private void AddTime()
+        {
             /* rest2++;
-             if (rest2>9)
-             {
-                 rest1++;
-                 rest2 = 0;
-             }
-             if (rest1>9)
-             {
-             */
+ if (rest2>9)
+ {
+     rest1++;
+     rest2 = 0;
+ }
+ if (rest1>9)
+ {
+ */
             second2++;
             //rest1 = 0;
             //}
@@ -135,14 +168,49 @@ namespace Timer_App
                 minute1++;
                 minute2 = 0;
             }
-
-            ShowTime();
         }
 
-        private void countdown()
+        private void MinusTime()
+        {
+            second2--;
+            if (second2<0)
+            { 
+                second1--;
+                second2 = 0;
+            }
+            if (second1<0)
+            {
+                minute2--;
+                second1 = 0;
+            }
+            if (minute2<0)
+            {
+                minute1--;
+                minute2 = 0;
+            }
+            //if( (minute1==0)&(minute2==0)&(second1==0)&(second2==0) )
+            if (minute1<0)
+            {
+                reset();//set time to zero
+                //Ding!
+
+            }
+
+        }
+
+        private void countdown(int s, int m)
         {
             //count down to 00:00
             //and DING!
+            flag = false;
+            if(m>=10) //只有一个10分钟
+            //{ minute1 = m/10; minute2 = m%10; second1 = second2 = 0; }
+            { minute1 = 1; minute2 = 0; second1 = second2 = 0; }
+            else
+            { minute1 = 0; minute2 = m; second1 = second2 = 0; }
+            if (m==0)
+            { minute1 = 0; minute2 = 0; second1 = 3; second2 = 0; }
+            dispatcherTimer.Start();
 
         }
 
@@ -155,4 +223,12 @@ namespace Timer_App
 
         }
     }
+}
+
+public class TimeDuration
+{
+    public int Num { get; set; }
+    public string Unit { get; set; }
+    //public int min { get; set; }
+    //public int second { get; set; }
 }
