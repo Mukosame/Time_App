@@ -23,17 +23,23 @@ namespace Timer_App
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        int minute=0;
-        int second=0;
-        int rest=0;
-        int minute1, minute2, second1, second2;
-        int rest1, rest2, rest3;
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+
+        //int minute=0;
+        //int second=0;
+        //int rest=0;
+        int minute1=0, minute2=0, second1=0, second2=0;
+        int rest1=0, rest2=0, rest3=0;
         bool flag = false; //default: not running 
         
 
         public MainPage()
         {
             this.InitializeComponent();
+
+            dispatcherTimer.Tick += new EventHandler<object>(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 1);
+            //set time interval to 1s
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
         }
@@ -57,27 +63,28 @@ namespace Timer_App
         //start
         private void bksclick(object sender, RoutedEventArgs e)
         {
-            flag = true; //start running
-            ChangeTime();
+            dispatcherTimer.Start();
         }
 
         //stop
         private void btzclick(object sender, RoutedEventArgs e)
         {
-            flag = false;//not running
-            //textblock1.Text = minute1 + minute2+ ":" + second1 + second2;
-            //textblock2.Text = "." + rest;
+            //flag = false;//not running
+            dispatcherTimer.Stop();
+            ShowTime();
         }
 
-        //clear to zero
+        //reset to zero
         private void bqlclick(object sender, RoutedEventArgs e)
         {
-            flag = false;
-            minute = 0;
-            second = 0;
-            rest = 0;
+            //flag = false;
+            dispatcherTimer.Stop();
+            minute1 = 0; minute2 = 0;
+            second1 = 0; second2 = 0;
+            //    rest1 = 0; rest2 = 0; 
+
             textblock1.Text = "00:00";
-            textblock2.Text = ".000";
+            //textblock2.Text = ".00";
         }
 
         //Set time
@@ -85,7 +92,7 @@ namespace Timer_App
         {
             // e.OldTime - 原时间
             // e.NewTime - 新时间
-            textblock1.Text = TimePicker.Time.ToString();
+           // textblock1.Text = TimePicker.Time.ToString();
             textblock2.Text = ".000";
             //TimePicker.Time.ToString
             countdown();
@@ -98,23 +105,40 @@ namespace Timer_App
         }
 
         //change time
-        private void ChangeTime()
+        private void dispatcherTimer_Tick(object sender, object e)
         {
-            while(flag)
-            {
-                //sleep Task.Delay(1);
+            /* rest2++;
+             if (rest2>9)
+             {
+                 rest1++;
+                 rest2 = 0;
+             }
+             if (rest1>9)
+             {
+             */
+            second2++;
+            //rest1 = 0;
+            //}
 
-                minute1 = minute / 10;
-                minute2 = minute % 10;
-                second1 = second / 10;
-                second2 = second % 10;
-                rest1 = rest / 100;
-                rest2 = (rest - rest1 * 100) / 10;
-                rest3 = (rest - rest1 * 100 - rest2 * 10);
-                ShowTime();
+            if (second2 > 9)
+            {
+                second1++;
+                second2 = 0;
+            }
+            if (second1 > 5)
+            {
+                minute2++;
+                second1 = 0;
+            }
+            if (minute2 > 9)
+            {
+                minute1++;
+                minute2 = 0;
             }
 
+            ShowTime();
         }
+
         private void countdown()
         {
             //count down to 00:00
@@ -123,10 +147,12 @@ namespace Timer_App
         }
 
         private void ShowTime()
-        {         
-                textblock1.Text = minute1 + minute2 + ":" + second1 + second2;    
-                textblock2.Text = "." + rest1 + rest2 + rest3;
-                                   
+        {
+            string temp = Convert.ToString(minute1);
+            temp = temp + minute2 + ":" + second1 + second2;
+            textblock1.Text = temp;
+            //textblock2.Text = "." + rest1 + rest2;
+
         }
     }
 }
