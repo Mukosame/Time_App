@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -15,8 +16,14 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.ApplicationModel.Email;
+using Windows.Security.ExchangeActiveSyncProvisioning;
+ 
+//using Microsoft.Phone.Tasks;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
+
+
 
 namespace Timer_App
 {
@@ -27,6 +34,7 @@ namespace Timer_App
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        
 
         public Time_Page()
         {
@@ -36,10 +44,21 @@ namespace Timer_App
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
         }
-
+/*
+        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            if (rootFrame != null && rootFrame.CanGoBack)
+            {
+                rootFrame.GoBack();
+                e.Handled = true;
+            }
+        }
+        */
         /// <summary>
         /// Gets the <see cref="NavigationHelper"/> associated with this <see cref="Page"/>.
         /// </summary>
+        /// 
         public NavigationHelper NavigationHelper
         {
             get { return this.navigationHelper; }
@@ -106,6 +125,35 @@ namespace Timer_App
             this.navigationHelper.OnNavigatedFrom(e);
         }
 
+        
+        async void email(object sender, RoutedEventArgs e)
+        {
+            
+            EasClientDeviceInformation CurrentDeviceInfor = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation();
+            String OSVersion=CurrentDeviceInfor.OperatingSystem;
+            String Manufacturer = CurrentDeviceInfor.SystemManufacturer;
+            String FriendlyName = CurrentDeviceInfor.FriendlyName;
+            
+            Windows.ApplicationModel.Email.EmailMessage mail = new Windows.ApplicationModel.Email.EmailMessage();
+            mail.Subject = "[WP8]秒表用户反馈-"+ Version.Text.ToString();
+            mail.Body = "\n\n\n生产厂商：" + Manufacturer + "\n手机型号：" + FriendlyName + "\nOS版本：" + OSVersion;
+            mail.To.Add(new Windows.ApplicationModel.Email.EmailRecipient("mukosame@gmail.com", "Mukosame"));
+            await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(mail);
+            
+        }
+    
+        /*
+        private async void searchStore_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            //登录商店搜索
+            await Launcher.LaunchUriAsync(new System.Uri("zune:search?publisher=Lython"));
+        }*/
+
+        private async void otherapp(object sender, RoutedEventArgs e)
+        {
+            var uri = new Uri(string.Format(@"ms-windows-store:search?publisher=Mukosame"));
+            await Windows.System.Launcher.LaunchUriAsync(uri);
+        }
         #endregion
     }
 }

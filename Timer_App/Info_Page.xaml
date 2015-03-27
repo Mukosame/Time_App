@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="Timer_App.Time_Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Timer_App"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="叮！秒表 V1.1.0" Style="{ThemeResource TitleTextBlockStyle}"  Name="Version"/>
+            <TextBlock Text="关于"   Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top"
+                       FontSize="17">
+                       使用帮助：
+                <LineBreak/>
+                       <LineBreak/>开始：按下此按钮即可开始计时，在暂停后按下可以继续计时。此按钮只能正向计时；
+                <LineBreak/>暂停：按下此按钮即可暂停计时； 
+                <LineBreak/>清零：按下此按钮即可将当前时间清零； 
+                <LineBreak/>定时选择：点击下拉框，即出现“30秒，1分钟，2分钟，5分钟，10分钟”5个预设选项。选定后回到主界面时自动开始倒计时。若想停止倒计时，可按下“暂停”按钮。倒计时不可继续。
+                              
+            </TextBlock>
+        </Grid>
+        <Grid Grid.Row="2" x:Name="HelpRoot" Margin="19,250,19,0">
+            <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top"
+                       FontSize="17">
+                开发者：
+                <LineBreak/>Mukosame
+                <LineBreak/>如果你喜欢我的应用，可以：
+                <LineBreak/>                 
+            </TextBlock>
+        </Grid>
+        <Grid Grid.Row="2" x:Name="BottomButton" Margin="19,330,19,0">
+            <Button Content="给我发邮件" HorizontalAlignment="Center" VerticalAlignment="Top" Width="250" Click="email"/>
+            <Button Content="看看我的其他应用" HorizontalAlignment="Center"  Width="250" Click="otherapp"/>
+
+        </Grid>
+    </Grid>
+</Page>

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -227,6 +228,28 @@ namespace Timer_App
             //textblock2.Text = "." + rest1 + rest2;
 
         }
+
+        //Review Me！
+        /*
+        async void LikeButton_Click(object sender, RoutedEventArgs e)
+        {
+            //await Windows.System.Launcher.LaunchUriAsync(new Uri(@"zune:reviewapp?appid=app" + YourAppID));
+            //new Uri("ms-windows-store:reviewapp?appid=" + CurrentApp.AppId);
+            var uri = new Uri(string.Format("ms-windows-store:reviewapp?appid={0}", appid));
+            await Windows.System.Launcher.LaunchUriAsync(uri);
+        }
+         */
+
+        //Info Page
+        private void HelpButton_Click(object sender, RoutedEventArgs e)
+        {
+            //this.NavigationService.Navigate(new Uri("/Info_Page.xaml", UriKind.Relative));
+            Frame.Navigate(typeof(Time_Page));            
+        }
+
+    //
+    //IF YOU WANT Add something here
+    //
     }
 }
 
