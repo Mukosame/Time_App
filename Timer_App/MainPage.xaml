@@ -12,30 +12,38 @@
         <FlyoutBase.AttachedFlyout>
             <MenuFlyout/>
         </FlyoutBase.AttachedFlyout>
-        <Button Content="开始" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="28" Width="85" Name="bks" Click="bksclick" Margin="20,350,0,232"/>
-        <Button Content="清零" HorizontalAlignment="Right"  VerticalAlignment="Center" Height="28" Width="85" Name="bql" Click="bqlclick" Margin="0,350,20,232"/>
-        <Button Content="停止" HorizontalAlignment="Center" VerticalAlignment="Center" Height="28" Width="85" Name="btz" Click="btzclick" Margin="145,350,146,232"/>
-        <!--
-        <Button Content="定时" HorizontalAlignment="Left" Margin="226,439,0,0" VerticalAlignment="Top" Height="28" Width="85" Name="bds" Click="bdsclick" />
-        -->
-        <TextBlock HorizontalAlignment="Left" Margin="65,74,0,0" TextWrapping="Wrap" Text="00:00" VerticalAlignment="Top" Height="125" Width="270" Name="textblock1" FontSize="110"/>
-        <TextBlock HorizontalAlignment="Left" Margin="242,199,0,0" TextWrapping="Wrap" Text=".000" VerticalAlignment="Top" Height="40" Width="93" Name="textblock2" FontSize="40"/>
-        <StackPanel>
-        <ComboBox HorizontalAlignment="Left" Margin="20,456,0,0" VerticalAlignment="Top" Width="360"
-                  Header="定时" Name="combobox" PlaceholderText="30 秒" 
-                  DropDownClosed="ds">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                    <StackPanel Orientation ="Horizontal">
-                        <TextBlock Text="{Binding Num}" FontSize="30"/>
-                        <TextBlock Text="{Binding Unit}" Margin="50 457 0 0"/>
-                    </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-
-            </ComboBox>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center"  
+                    Orientation ="Vertical" Margin="30,40,30,40">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" Text="00:00"  Height="125" Width="270" Name="textblock1" FontSize="110" />
+            <TextBlock HorizontalAlignment="Right"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="40" Width="93" Name="textblock2" FontSize="40" />
         </StackPanel>
 
+        <StackPanel VerticalAlignment="Center" Orientation ="Vertical">
+            <Button Content="开始"  HorizontalAlignment="Center" Height="28" Width="200" Name="bks" Click="bksclick" />            
+            <Button Content="暂停" HorizontalAlignment="Center" Height="28" Width="200" Name="btz" Click="btzclick" />
+            <Button Content="清零" HorizontalAlignment="Center" Height="28" Width="200" Name="bql" Click="bqlclick" />
+            <!--
+        <Button Content="定时" HorizontalAlignment="Left" Margin="226,439,0,0" VerticalAlignment="Top" Height="28" Width="85" Name="bds" Click="bdsclick" />
+        -->
+        </StackPanel>
+        <StackPanel  VerticalAlignment="Bottom" 
+                     Margin="0,0,00,140">
+            <MediaElement x:Name="sound" />
+                <ComboBox HorizontalAlignment="Center" VerticalAlignment="Top" Width="320"
+                  Header="定时" Name="combobox" PlaceholderText="请选择，倒计时自动开始" 
+                  DropDownClosed="ds">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation ="Horizontal">
+                                <TextBlock Text="{Binding Num}" FontSize="25"/>
+                                <TextBlock Text="{Binding Unit}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+
+                </ComboBox>
+            </StackPanel>
+       
 
 
     </Grid>

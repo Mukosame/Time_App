@@ -29,8 +29,7 @@ namespace Timer_App
         //int second=0;
         //int rest=0;
         int minute1=0, minute2=0, second1=0, second2=0;
-        int rest1=0, rest2=0, rest3=0;
-        int alltime = 0;
+        int rest1 = 0, rest2 = 0, rest3;
         bool flag = true; //default: add time running 
         
 
@@ -45,6 +44,8 @@ namespace Timer_App
                 new TimeDuration {Num=5, Unit="分钟"},// , min=5, second=0},
                 new TimeDuration {Num=10, Unit="分钟"},// , min=10, second=0},
             };
+            //data source binding
+            combobox.ItemsSource = datas;
 
             dispatcherTimer.Tick += new EventHandler<object>(dispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 1);
@@ -82,6 +83,7 @@ namespace Timer_App
             //flag = false;//not running
             dispatcherTimer.Stop();
             ShowTime();
+
         }
 
         //reset to zero
@@ -102,6 +104,7 @@ namespace Timer_App
         }
 
         //Set time
+        //when combobox drop down closed
         private void ds (object sender, object e)
         {
             //select certain time duration
@@ -121,12 +124,13 @@ namespace Timer_App
                
                 countdown(s,m);
             }
-            textblock2.Text = ".000";            
+           // textblock2.Text = ".000";            
         }
 
         //change time
         private void dispatcherTimer_Tick(object sender, object e)
         {
+            ShowTime();
             if (flag == true)
             {
                 AddTime();
@@ -135,7 +139,7 @@ namespace Timer_App
             {
                 MinusTime();
             }            
-            ShowTime();
+            
         }
 
         private void AddTime()
@@ -176,24 +180,25 @@ namespace Timer_App
             if (second2<0)
             { 
                 second1--;
-                second2 = 0;
+                second2 = 9;
             }
             if (second1<0)
             {
                 minute2--;
-                second1 = 0;
+                second1 = 5;
             }
             if (minute2<0)
             {
                 minute1--;
-                minute2 = 0;
+                minute2 = 9;
             }
             //if( (minute1==0)&(minute2==0)&(second1==0)&(second2==0) )
             if (minute1<0)
             {
                 reset();//set time to zero
                 //Ding!
-
+                sound.Source = new Uri("ms-appx:///ding.mp3", UriKind.Absolute);
+                sound.Play();
             }
 
         }
@@ -225,6 +230,7 @@ namespace Timer_App
     }
 }
 
+//define data class
 public class TimeDuration
 {
     public int Num { get; set; }
