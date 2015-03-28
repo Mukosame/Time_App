@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -151,8 +150,10 @@ namespace Timer_App
 
         private async void otherapp(object sender, RoutedEventArgs e)
         {
-            var uri = new Uri(string.Format(@"ms-windows-store:search?publisher=Mukosame"));
-            await Windows.System.Launcher.LaunchUriAsync(uri);
+            //var uri = new Uri(string.Format(@"ms-windows-store:search?publisher=Mukosame"));
+            //await Windows.System.Launcher.LaunchUriAsync(uri);
+            await Windows.System.Launcher.LaunchUriAsync(
+                new Uri(string.Format("ms-windows-store:search?keyword=Mukosame")));
         }
         #endregion
     }

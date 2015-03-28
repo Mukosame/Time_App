@@ -23,7 +23,7 @@
 
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="叮！秒表 V1.1.0" Style="{ThemeResource TitleTextBlockStyle}"  Name="Version"/>
+            <TextBlock Text="叮！秒表 V1.1.0.0" Style="{ThemeResource TitleTextBlockStyle}"  Name="Version"/>
             <TextBlock Text="关于"   Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
         </StackPanel>
 

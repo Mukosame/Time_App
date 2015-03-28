@@ -45,7 +45,7 @@
         </StackPanel>
         <StackPanel Margin="0,0,0,0"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal">
 
-            <!--AppBarButton Icon="Like" Label="喜欢" Click="LikeButton_Click" /-->
+            <AppBarButton Icon="Like" Label="喜欢" Click="LikeButton_Click" />
             <AppBarButton  Icon="Help" Label="帮助" Click="HelpButton_Click"/>
 
 

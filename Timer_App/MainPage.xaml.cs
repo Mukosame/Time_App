@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
 namespace Timer_App
@@ -198,7 +199,9 @@ namespace Timer_App
             {
                 reset();//set time to zero
                 //Ding!
-                sound.Source = new Uri("ms-appx:///ding.mp3", UriKind.Absolute);
+
+                sound.Source = new Uri(@"ms-appdata:///local/Source/ding.mp3"); 
+                //new Uri("/Source/ding.mp3", UriKind.Relative);
                 sound.Play();
             }
 
@@ -230,6 +233,11 @@ namespace Timer_App
         }
 
         //Review Me！
+        private async void LikeButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(
+    new Uri(string.Format("ms-windows-store:reviewapp?appid=" + "cbfb5828-038a-4b6e-993f-a388ce2259a6")));
+        }
         /*
         async void LikeButton_Click(object sender, RoutedEventArgs e)
         {
