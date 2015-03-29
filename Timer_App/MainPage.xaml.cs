@@ -33,8 +33,8 @@ namespace Timer_App
         int minute1=0, minute2=0, second1=0, second2=0;
         int rest1 = 0, rest2 = 0, rest3;
         bool flag = true; //default: add time running 
+        //MediaElement MyMedia = new MediaElement();
         
-
         public MainPage()
         {
             this.InitializeComponent();
@@ -197,15 +197,16 @@ namespace Timer_App
             //if( (minute1==0)&(minute2==0)&(second1==0)&(second2==0) )
             if (minute1<0)
             {
-                reset();//set time to zero
                 //Ding!
-
-                sound.Source = new Uri(@"ms-appdata:///local/Source/ding.mp3"); 
-                //new Uri("/Source/ding.mp3", UriKind.Relative);
+                //sound.Source = new Uri(@"ms-appx:///local/ding.mp3"); 
+                sound.Source = new Uri("ms-appx:///ding.mp3", UriKind.Absolute);
                 sound.Play();
+                reset();//set time to zero
             }
 
         }
+
+
 
         private void countdown(int s, int m)
         {

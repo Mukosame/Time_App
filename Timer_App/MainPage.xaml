@@ -28,7 +28,7 @@
         </StackPanel>
         <StackPanel  VerticalAlignment="Bottom" 
                      Margin="0,0,00,140">
-            <MediaElement x:Name="sound" />
+            <MediaElement x:Name="sound"/>
                 <ComboBox HorizontalAlignment="Center" VerticalAlignment="Top" Width="320"
                   Header="定时" Name="combobox" PlaceholderText="请选择，倒计时自动开始" 
                   DropDownClosed="ds">
