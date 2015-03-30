@@ -117,6 +117,7 @@ namespace Timer_App
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedTo(e);
+            Version.Text = "叮！秒表" + e.Parameter.ToString();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -134,7 +135,7 @@ namespace Timer_App
             String FriendlyName = CurrentDeviceInfor.FriendlyName;
             
             Windows.ApplicationModel.Email.EmailMessage mail = new Windows.ApplicationModel.Email.EmailMessage();
-            mail.Subject = "[WP8]秒表用户反馈-"+ Version.Text.ToString();
+            mail.Subject = "[WP8]用户反馈-"+ Version.Text.ToString();
             mail.Body = "\n\n\n生产厂商：" + Manufacturer + "\n手机型号：" + FriendlyName + "\nOS版本：" + OSVersion;
             mail.To.Add(new Windows.ApplicationModel.Email.EmailRecipient("mukosame@gmail.com", "Mukosame"));
             await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(mail);

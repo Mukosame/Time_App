@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using Windows.ApplicationModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -34,7 +34,17 @@ namespace Timer_App
         int rest1 = 0, rest2 = 0, rest3;
         bool flag = true; //default: add time running 
         //MediaElement MyMedia = new MediaElement();
-        
+        String appversion = GetAppVersion();
+
+        public static string GetAppVersion()
+        {
+            Package package = Package.Current;
+            PackageId packageId = package.Id;
+            PackageVersion version = packageId.Version;
+            string temp = String.Format("{0}.{0}.{0}.{0}", version.Major, version.Minor, version.Build, version.Revision);
+            return temp;
+        }
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -253,7 +263,7 @@ namespace Timer_App
         private void HelpButton_Click(object sender, RoutedEventArgs e)
         {
             //this.NavigationService.Navigate(new Uri("/Info_Page.xaml", UriKind.Relative));
-            Frame.Navigate(typeof(Time_Page));            
+            Frame.Navigate(typeof(Time_Page),appversion);            
         }
 
     //
