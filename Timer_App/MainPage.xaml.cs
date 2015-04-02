@@ -95,7 +95,7 @@ namespace Timer_App
             //flag = false;//not running
             dispatcherTimer.Stop();
             ShowTime();
-
+            sound.Stop();
         }
 
         //reset to zero
