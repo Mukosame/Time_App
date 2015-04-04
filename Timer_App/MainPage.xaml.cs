@@ -55,6 +55,7 @@ namespace Timer_App
                 new TimeDuration {Num=2, Unit="分钟"},// , min=2, second=0},
                 new TimeDuration {Num=5, Unit="分钟"},// , min=5, second=0},
                 new TimeDuration {Num=10, Unit="分钟"},// , min=10, second=0},
+               // new TimeDuration{Unit="自定义"},
             };
             //data source binding
             combobox.ItemsSource = datas;
@@ -124,17 +125,25 @@ namespace Timer_App
             {
                 int s = 0; int m = 0;
                 TimeDuration duration = combobox.SelectedItem as TimeDuration;
-                if (duration.Unit=="秒")
-                {
-                    s = duration.Num;
-                }
+                if (duration.Unit == "自定义")
+                { 
+                //go to time picker page
 
-                if (duration.Unit=="分钟")
-                {
-                    m = duration.Num;
                 }
-               
-                countdown(s,m);
+                else
+                {
+                    if (duration.Unit == "秒")
+                    {
+                        s = duration.Num;
+                    }
+
+                    if (duration.Unit == "分钟")
+                    {
+                        m = duration.Num;
+                    }
+
+                    countdown(s, m);
+                }
             }
            // textblock2.Text = ".000";            
         }
@@ -264,6 +273,11 @@ namespace Timer_App
         {
             //this.NavigationService.Navigate(new Uri("/Info_Page.xaml", UriKind.Relative));
             Frame.Navigate(typeof(Time_Page),appversion);            
+        }
+
+        private void timechanged(object sender, TimePickerValueChangedEventArgs e)
+        {
+            //得到时间为time.Time
         }
 
     //

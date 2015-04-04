@@ -19,7 +19,7 @@
         </StackPanel>
 
         <StackPanel VerticalAlignment="Center" Orientation ="Vertical">
-            <Button Content="开始"  HorizontalAlignment="Center" Height="28" Width="200" Name="bks" Click="bksclick" />            
+            <Button Content="开始"  HorizontalAlignment="Center" Height="28" Width="200" Name="bks" Click="bksclick" />
             <Button Content="暂停" HorizontalAlignment="Center" Height="28" Width="200" Name="btz" Click="btzclick" />
             <Button Content="清零" HorizontalAlignment="Center" Height="28" Width="200" Name="bql" Click="bqlclick" />
             <!--
@@ -27,30 +27,31 @@
         -->
         </StackPanel>
         <StackPanel  VerticalAlignment="Bottom" 
-                     Margin="0,0,00,140">
+                     Margin="0,0,0,85">
             <MediaElement x:Name="sound"/>
-                <ComboBox HorizontalAlignment="Center" VerticalAlignment="Top" Width="320"
+            <ComboBox HorizontalAlignment="Center" VerticalAlignment="Top" Width="320"
                   Header="定时" Name="combobox" PlaceholderText="请选择，倒计时自动开始" 
                   DropDownClosed="ds">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation ="Horizontal">
-                                <TextBlock Text="{Binding Num}" FontSize="25"/>
-                                <TextBlock Text="{Binding Unit}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation ="Horizontal">
+                            <TextBlock Text="{Binding Num}" FontSize="25"/>
+                            <TextBlock Text="{Binding Unit}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
 
-                </ComboBox>
+            </ComboBox>
+            <TimePicker HorizontalAlignment="Center"  Width="320" VerticalAlignment="Bottom"
+                        Header="自定义倒计时" Name="time" TimeChanged="timechanged" ClockIdentifier="24HourClock"/>
+
         </StackPanel>
         <StackPanel Margin="0,0,0,0"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal">
 
             <AppBarButton Icon="Like" Label="喜欢" Click="LikeButton_Click" />
             <AppBarButton  Icon="Help" Label="帮助" Click="HelpButton_Click"/>
-
-
         </StackPanel>
-        
+
 
 
 
