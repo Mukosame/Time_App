@@ -187,21 +187,23 @@
     <MainPackageIdentityName>31979Mukosame.173590CC2FC62</MainPackageIdentityName>
     <ReservedNames>
       <ReservedName>叮！秒表</ReservedName>
-      <ReservedName>秒表，叮~</ReservedName>
+      <ReservedName>秒表，叮！</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
     <MainPackageIdentityName>31979Mukosame.24</MainPackageIdentityName>
+    <MainPackageIdentityName>31979Mukosame.134650FEACD72</MainPackageIdentityName>
     <MainPackageIdentityName>31979Mukosame.CompassStellaris</MainPackageIdentityName>
     <MainPackageIdentityName>31979Mukosame.42999BF01CF6F</MainPackageIdentityName>
     <MainPackageIdentityName>31979Mukosame.42957904A425E</MainPackageIdentityName>
+    <MainPackageIdentityName>31979Mukosame.120910FAAB4BF</MainPackageIdentityName>
     <MainPackageIdentityName>31979Mukosame.3964932761704</MainPackageIdentityName>
   </AccountPackageIdentityNames>
   <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=b19ebae9-3d5c-46ed-828f-8024fdf84a66">
     <PackageInfo>
       <OsMinVersion>6.3.0.0</OsMinVersion>
       <PackageArchitecture>neutral</PackageArchitecture>
-      <PackageMaxArchitectureVersion>1.1.0.2</PackageMaxArchitectureVersion>
+      <PackageMaxArchitectureVersion>1.1.0.4</PackageMaxArchitectureVersion>
     </PackageInfo>
   </PackageInfoList>
 </StoreAssociation>

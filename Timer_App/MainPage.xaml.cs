@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-
+using System.Diagnostics;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -48,6 +48,8 @@ namespace Timer_App
         public MainPage()
         {
             this.InitializeComponent();
+            Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+
             List<TimeDuration> datas = new List<TimeDuration>
             {
                 new TimeDuration {Num=30, Unit="秒"},// min=0, second=30},
@@ -66,6 +68,26 @@ namespace Timer_App
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
         }
+
+        private void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
+        {
+            if (!e.Handled && Frame.CurrentSourcePageType.FullName == "Timer_App.MainPage")
+                Application.Current.Exit();
+        }
+
+        #region 普通时间
+        string getLocalTime()
+        {
+            //格式化系统时间
+            DateTime now = DateTime.Now;
+            string hour = now.Hour.ToString();
+            string minute = now.Minute.ToString();
+            string second = now.Second.ToString();
+            if (minute.Length == 1) minute = '0' + minute;
+            if (second.Length == 1) second = '0' + second;
+            return hour + ':' + minute + ':' + second;
+        }
+        #endregion
 
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
@@ -88,6 +110,7 @@ namespace Timer_App
         {
             flag = true;
             dispatcherTimer.Start();
+            //CompositionTarget.Rendering += OnCompositionTargetRendering;
         }
 
         //stop
@@ -159,8 +182,8 @@ namespace Timer_App
             else
             {
                 MinusTime();
-            }            
-            
+            }
+            ShowTime();
         }
 
         private void AddTime()

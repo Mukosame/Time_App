@@ -128,15 +128,15 @@ namespace Timer_App
         
         async void email(object sender, RoutedEventArgs e)
         {
-            
+
             EasClientDeviceInformation CurrentDeviceInfor = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation();
-            String OSVersion=CurrentDeviceInfor.OperatingSystem;
+            String OSVersion = CurrentDeviceInfor.OperatingSystem;
             String Manufacturer = CurrentDeviceInfor.SystemManufacturer;
-            String FriendlyName = CurrentDeviceInfor.FriendlyName;
-            
+            String SystemProductName = CurrentDeviceInfor.SystemProductName;
+
             Windows.ApplicationModel.Email.EmailMessage mail = new Windows.ApplicationModel.Email.EmailMessage();
-            mail.Subject = "[WP8]用户反馈-"+ Version.Text.ToString();
-            mail.Body = "\n\n\n生产厂商：" + Manufacturer + "\n手机型号：" + FriendlyName + "\nOS版本：" + OSVersion;
+            mail.Subject = "[WP8.1]反馈" + Version.Text.ToString();
+            mail.Body = "\n\n\n生产厂商：" + Manufacturer + "\n系统名：" + SystemProductName + "\nOS版本：" + OSVersion;
             mail.To.Add(new Windows.ApplicationModel.Email.EmailRecipient("mukosame@gmail.com", "Mukosame"));
             await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(mail);
             
@@ -154,7 +154,7 @@ namespace Timer_App
             //var uri = new Uri(string.Format(@"ms-windows-store:search?publisher=Mukosame"));
             //await Windows.System.Launcher.LaunchUriAsync(uri);
             await Windows.System.Launcher.LaunchUriAsync(
-                new Uri(string.Format("ms-windows-store:search?keyword=Mukosame")));
+                new Uri(string.Format("ms-windows-store:search?publisher=Mukosame")));
         }
         #endregion
     }

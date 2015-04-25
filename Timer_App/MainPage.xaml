@@ -27,7 +27,7 @@
         -->
         </StackPanel>
         <StackPanel  VerticalAlignment="Bottom" 
-                     Margin="0,0,0,85">
+                     Margin="0,0,0,125">
             <MediaElement x:Name="sound"/>
             <ComboBox HorizontalAlignment="Center" VerticalAlignment="Top" Width="320"
                   Header="定时" Name="combobox" PlaceholderText="请选择，倒计时自动开始" 
@@ -42,9 +42,6 @@
                 </ComboBox.ItemTemplate>
 
             </ComboBox>
-            <TimePicker HorizontalAlignment="Center"  Width="320" VerticalAlignment="Bottom"
-                        Header="自定义倒计时" Name="time" TimeChanged="timechanged" ClockIdentifier="24HourClock"/>
-
         </StackPanel>
         <StackPanel Margin="0,0,0,0"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal">
 
